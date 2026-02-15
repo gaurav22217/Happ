@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Surprise</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Blurred Background */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("bg.jpeg") no-repeat center center/cover;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+
+.gift {
+    font-size: 120px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gift:hover {
+    transform: scale(1.2);
+}
+.cute-gif {
+    width: 250px;
+    margin: 20px 0;
+}
+
+.cute-line {
+    font-size: 18px;
+    margin: 5px;
+    background: rgba(0,0,0,0.4);
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+</style>
+</head>
+<body>
+
+<h1>Do you want a surprise? 🎁</h1>
+<img src="yourgif.gif" class="cute-gif">
+<p class="cute-line">I knew you would say yes 🥺💕</p>
+<p class="cute-line">You make my world brighter every day ✨</p>
+
+
+<div class="gift" id="giftBox">🎁</div>
+<p id="tryMessage"></p>
+
+
+<audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let clickCount = 0;
+
+document.getElementById("giftBox").addEventListener("click", function() {
+    clickCount++;
+
+    if (clickCount <= 5) {
+        document.getElementById("tryMessage").innerText = 
+        "Hehe 😜 Try again Cutieeee! (" + clickCount + "/5)";
+        
+        // move gift randomly
+        this.style.position = "absolute";
+        this.style.left = Math.random() * 80 + "%";
+        this.style.top = Math.random() * 80 + "%";
+    } 
+    else {
+        window.location.href = "gallery.html";
+    }
+});
+</script>
+
+
+</body>
+</html>
